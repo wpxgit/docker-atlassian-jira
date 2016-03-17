@@ -1,6 +1,15 @@
 machine:
+  environment:
+    CLOUDSDK_CORE_DISABLE_PROMPTS: 1
+    CLOUDSDK_PYTHON_SITEPACKAGES: 1
+    CLOUDSDK_COMPUTE_ZONE: europe-west1-d
+    CLOUDSDK_CORE_PROJECT: $GCLOUD_PROJECTID
+    PATH: $PATH:/home/ubuntu/google-cloud-sdk/bin
+  python:
+    version: 2.7.3
   pre:
     - sudo apt-get install jq
+    - sudo gcloud --quiet components update kubectl
   services:
     - docker
 
@@ -11,13 +20,23 @@ dependencies:
     - docker pull postgres:9.3
     - docker pull mysql:5.6
     - docker pull java:8
+  override:
+    - chmod +x scripts/ensure-gcloud-installed.sh
+    - scripts/ensure-gcloud-installed.sh
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - docker build -t $EXTERNAL_REGISTRY_ENDPOINT/seoviu-wordpress:$CIRCLE_SHA1 .
+    - mkdir -p ~/docker; docker save $EXTERNAL_REGISTRY_ENDPOINT/seoviu-wordpress:$CIRCLE_SHA1 > ~/docker/image.tar
 
 test:
   pre:
     - bin/prepare
 
 deployment:
-  newest-version:
+  prod:
     branch: master
     commands:
-      - bin/deploy
+      - chmod +x scripts/auth-gcloud.sh
+      - chmod +x scripts/rolling-update.sh
+      - scripts/auth-gcloud.sh
+      - gcloud docker push $EXTERNAL_REGISTRY_ENDPOINT/seoviu-wordpress > /dev/null
+      - scripts/rolling-update.sh
