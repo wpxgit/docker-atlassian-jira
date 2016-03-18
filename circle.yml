@@ -23,12 +23,12 @@ dependencies:
     - chmod +x scripts/ensure-gcloud-installed.sh
     - scripts/ensure-gcloud-installed.sh
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
-    - docker build -t $EXTERNAL_REGISTRY_ENDPOINT/seoviu-wordpress:$CIRCLE_SHA1 .
-    - mkdir -p ~/docker; docker save $EXTERNAL_REGISTRY_ENDPOINT/seoviu-wordpress:$CIRCLE_SHA1 > ~/docker/image.tar
+    - docker build -t $EXTERNAL_REGISTRY_ENDPOINT/jira:$CIRCLE_SHA1 .
+    - mkdir -p ~/docker; docker save $EXTERNAL_REGISTRY_ENDPOINT/jira:$CIRCLE_SHA1 > ~/docker/image.tar
 
-test:
-  pre:
-    - bin/prepare
+#test:
+#  pre:
+#    - bin/prepare
 
 deployment:
   prod:
@@ -37,5 +37,5 @@ deployment:
       - chmod +x scripts/auth-gcloud.sh
       - chmod +x scripts/rolling-update.sh
       - scripts/auth-gcloud.sh
-      - gcloud docker push $EXTERNAL_REGISTRY_ENDPOINT/seoviu-wordpress > /dev/null
+      - gcloud docker push $EXTERNAL_REGISTRY_ENDPOINT/jira > /dev/null
       #- scripts/rolling-update.sh
