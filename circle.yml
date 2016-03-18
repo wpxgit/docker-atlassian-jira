@@ -9,7 +9,6 @@ machine:
     version: 2.7.3
   pre:
     - sudo apt-get install jq
-    - sudo gcloud --quiet components update kubectl
   services:
     - docker
 
@@ -39,4 +38,4 @@ deployment:
       - chmod +x scripts/rolling-update.sh
       - scripts/auth-gcloud.sh
       - gcloud docker push $EXTERNAL_REGISTRY_ENDPOINT/seoviu-wordpress > /dev/null
-      - scripts/rolling-update.sh
+      #- scripts/rolling-update.sh
