@@ -6,7 +6,7 @@ ENV JIRA_INSTALL  /opt/atlassian/jira
 ENV JIRA_VERSION  7.1.2
 
 RUN mkdir -p "${JIRA_HOME}"
-RUN chown -R deamon:deamon "${JIRA_HOME}"
+RUN chown -R daemon:daemon "${JIRA_HOME}"
 
 # Install Atlassian JIRA and helper tools and setup initial home
 # directory structure.
