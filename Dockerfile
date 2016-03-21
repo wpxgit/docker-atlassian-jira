@@ -5,8 +5,7 @@ ENV JIRA_HOME     /var/atlassian/jira
 ENV JIRA_INSTALL  /opt/atlassian/jira
 ENV JIRA_VERSION  7.1.2
 
-RUN if [[ ! -d /var/atlassian/jira ]]; then mkdir /var/atlassian/jira; fi
-RUN if [[ ! -d /var/atlassian/jira ]]; then mkdir /var/atlassian/jira; fi
+RUN mkdir -p /var/atlassian/jira
 RUN chmod 777 /var/atlassian/jira
 
 # Install Atlassian JIRA and helper tools and setup initial home
