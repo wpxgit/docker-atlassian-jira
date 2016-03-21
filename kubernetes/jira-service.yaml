@@ -12,5 +12,5 @@ spec:
     protocol: TCP
     name: http
   selector:
-    website: jira.dx-innovations.de
+    website: jira.dx-innovations.com
     environment: prod
