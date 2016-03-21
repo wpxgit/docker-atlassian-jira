@@ -8,7 +8,7 @@ metadata:
     website: jira.dx-innovations.com
 spec:
   containers:
-    - image: eu.gcr.io/seoviu-web/jira:fa066ed982ce466a44c7d8ff04ce1e6326395ed9
+    - image: cptactionhank/atlassian-jira:latest
       name: atlassian-jira-software
       ports:
         - containerPort: 8080
@@ -19,12 +19,12 @@ spec:
           cpu: "600m"
       volumeMounts:
           # name must match the volume name below
-        - name: jira-persistent-storage
+        - name: jira-persistent-storage-var
           # mount path within the container
           mountPath: /var/atlassian/jira
   volumes:
-    - name: jira-persistent-storage
+    - name: jira-persistent-storage-var
       gcePersistentDisk:
         # This GCE PD must already exist.
-        pdName: jira-disk
+        pdName: jira-disk-1
         fsType: ext4
