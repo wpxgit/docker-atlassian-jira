@@ -8,7 +8,7 @@ metadata:
     website: jira.dx-innovations.com
 spec:
   containers:
-    - image: cptactionhank/atlassian-jira:latest
+    - image: eu.gcr.io/seoviu-web/jira:dd27febebf5477950bd5c80073f6248dcc480077
       name: atlassian-jira-software
       ports:
         - containerPort: 8080

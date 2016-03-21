@@ -30,7 +30,7 @@ deployment:
     branch: master
     commands:
       - chmod +x scripts/auth-gcloud.sh
-      - chmod +x scripts/rolling-update.sh
+      #- chmod +x scripts/rolling-update.sh
       - scripts/auth-gcloud.sh
       - gcloud docker push $EXTERNAL_REGISTRY_ENDPOINT/jira > /dev/null
       #- scripts/rolling-update.sh
