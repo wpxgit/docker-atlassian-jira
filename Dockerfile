@@ -5,9 +5,6 @@ ENV JIRA_HOME     /var/atlassian/jira
 ENV JIRA_INSTALL  /opt/atlassian/jira
 ENV JIRA_VERSION  7.1.2
 
-RUN mkdir -p "${JIRA_HOME}"
-RUN chown -R daemon:daemon "${JIRA_HOME}"
-
 # Install Atlassian JIRA and helper tools and setup initial home
 # directory structure.
 RUN set -x \
@@ -36,7 +33,7 @@ RUN set -x \
 # Use the default unprivileged account. This could be considered bad practice
 # on systems where multiple processes end up being executed by 'daemon' but
 # here we only ever run one process anyway.
-#USER daemon:daemon
+USER daemon:daemon
 
 # Expose default HTTP connector port.
 EXPOSE 8080
