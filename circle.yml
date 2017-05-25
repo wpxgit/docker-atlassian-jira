@@ -24,7 +24,6 @@ dependencies:
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build -t $EXTERNAL_REGISTRY_ENDPOINT/jira:$CIRCLE_SHA1 .
     - mkdir -p ~/docker; docker save $EXTERNAL_REGISTRY_ENDPOINT/jira:$CIRCLE_SHA1 > ~/docker/image.tar
-
 deployment:
   prod:
     branch: master
