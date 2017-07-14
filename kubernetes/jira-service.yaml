@@ -6,11 +6,16 @@ metadata:
     app: jirafrontend
 spec:
   type: LoadBalancer
+  loadBalancerIP: 35.187.108.153
   ports:
   - port: 80
     targetPort: 8080
     protocol: TCP
     name: http
+  - port: 443
+    targetPort: 8443
+    protocol: TCP
+    name: https
   selector:
     website: jira.dx-innovations.com
     environment: prod
