@@ -64,6 +64,7 @@
                    acceptCount="100"
                    disableUploadTimeout="true"
                    bindOnInit="false"/>
+        
 
         <!--
         ====================================================================================
@@ -92,7 +93,8 @@
           enableLookups="false" disableUploadTimeout="true"
           acceptCount="100" scheme="https" secure="true"
           clientAuth="false" sslProtocol="TLS" useBodyEncodingForURI="true"
-          keystoreFile="/var/atlassian/jira/jira.jks"/>
+          keyAlias="jira" keystoreFile="/var/atlassian/jira/jira.jks" keystorePass="sec123" keystoreType="JKS"
+          />
 
 
 
