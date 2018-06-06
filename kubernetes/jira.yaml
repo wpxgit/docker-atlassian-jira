@@ -19,7 +19,7 @@ spec:
         website: jira.dx-innovations.com
     spec:
       containers:
-        - image: eu.gcr.io/seoviu-web/jira:66cfb7fad8104acaf372a0313c68dec56aba2011
+        - image: eu.gcr.io/seoviu-web/jira:f509f6643077249940e133a33781af59cfc98ac0
           name: atlassian-jira-software
           ports:
             - containerPort: 8080
@@ -29,8 +29,8 @@ spec:
               cpu: "1500m"
               memory: 5000M
             requests:
-              cpu: "400m"
-              memory: 4000M
+              cpu: "100m"
+              memory: 2000M
           volumeMounts:
               # name must match the volume name below
             - name: jira-persistent-storage-var
